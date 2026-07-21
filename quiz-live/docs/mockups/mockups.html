@@ -1,0 +1,206 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><style>
+:root{--bg:#0f1222;--surface:#1a1f35;--surface2:#232a47;--border:#2e3658;--ink:#eef1ff;--muted:#9aa3c7;
+--accent:#ffc53d;--accent-ink:#1a1500;--green:#2ec27e;--red:#ff5d73;--blue:#3e8eff;--violet:#b36bff;--r:14px}
+*{box-sizing:border-box;margin:0}
+body{background:#333;font-family:'Liberation Sans','DejaVu Sans',sans-serif;color:var(--ink);font-size:15px;line-height:1.5}
+.frame{width:1440px;height:900px;background:radial-gradient(1000px 500px at 50% -10%,#1c2340 0%,var(--bg) 60%);overflow:hidden;position:relative;margin:40px auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:18px 48px}
+.logo{font-weight:bold;font-size:22px;letter-spacing:-.5px}.logo b{color:var(--accent)}
+.tb-user{display:flex;gap:14px;align-items:center}
+.badge{background:var(--surface2);border:1px solid var(--border);padding:4px 12px;border-radius:999px;font-size:12px;color:var(--muted)}
+.btn{font-weight:600;background:var(--surface2);color:var(--ink);border:1px solid var(--border);border-radius:10px;padding:10px 20px;display:inline-block}
+.btn.p{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.g{background:transparent}.btn.d{background:transparent;border-color:var(--red);color:var(--red)}
+.btn.sm{padding:6px 12px;font-size:13px}.btn.lg{padding:15px 34px;font-size:17px}
+.content{width:960px;margin:0 auto}
+h1{font-size:30px;letter-spacing:-.5px}h2{font-size:20px;margin:28px 0 12px}
+.muted{color:var(--muted)}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin:12px 0}
+input,.input,select,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 13px;width:100%;display:block}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+.field{margin-bottom:16px}
+.row{display:flex;gap:12px;align-items:center}
+/* screen 1: auth */
+.auth-wrap{height:100%;display:grid;place-items:center}
+.auth-card{width:440px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:34px;text-align:center}
+.tabs{display:flex;background:var(--bg);border-radius:10px;padding:4px;margin:20px 0 18px}
+.tab{flex:1;padding:9px;border-radius:8px;color:var(--muted);font-weight:600}
+.tab.on{background:var(--surface2);color:var(--ink)}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left;margin:4px 0 16px}
+.role{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:13px;color:var(--muted);font-size:13px}
+.role.on{border-color:var(--accent);color:var(--ink)}
+.role b{display:block;font-size:15px;margin-bottom:3px}
+/* dashboard */
+.phead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0 6px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.stat .v{font-size:30px;font-weight:bold;color:var(--accent)}
+.stat .l{color:var(--muted);font-size:13px}
+.qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
+.qcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px}
+.qcat{color:var(--accent);font-size:11px;font-weight:bold;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.qcard h3{font-size:17px;margin-bottom:4px}
+.qcard .m{color:var(--muted);font-size:13px;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;background:var(--surface);border-radius:var(--r);overflow:hidden}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--border);font-size:14px}
+th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+tr:last-child td{border-bottom:0}
+.mono{letter-spacing:2px}
+/* editor */
+.oprow{display:flex;gap:10px;align-items:center;margin:8px 0}
+.cb{width:20px;height:20px;border:2px solid var(--border);border-radius:5px;flex:none}
+.cb.on{background:var(--accent);border-color:var(--accent);position:relative}
+.cb.on:after{content:"✓";color:#1a1500;position:absolute;left:3px;top:-2px;font-weight:bold}
+/* game */
+.ghead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.code{font-size:52px;font-weight:bold;letter-spacing:.18em;color:var(--accent);background:var(--surface);border:2px solid var(--accent);border-radius:16px;padding:4px 24px}
+.cd{position:relative;height:34px;background:var(--surface);border-radius:999px;overflow:hidden;margin:16px 0;border:1px solid var(--border)}
+.cdb{height:100%;background:var(--accent);border-radius:999px}
+.cdn{position:absolute;inset:0;display:grid;place-items:center;font-weight:bold;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.qmeta{color:var(--muted);font-size:13px;margin:14px 0 6px}
+.qtext{font-size:26px;font-weight:bold;margin-bottom:16px}
+.qimg{width:520px;height:260px;border-radius:var(--r);border:1px solid var(--border);margin:0 auto 18px;display:grid;place-items:center;background:linear-gradient(135deg,#232a47,#1a1f35);color:var(--muted)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.opt{display:flex;align-items:center;gap:14px;background:var(--surface);border:2px solid var(--oc);border-radius:var(--r);padding:18px;font-weight:600;font-size:16px}
+.ol{width:36px;height:36px;display:grid;place-items:center;background:var(--oc);color:#0b0d18;font-weight:bold;border-radius:9px;flex:none}
+.opt.pick{background:var(--surface2);box-shadow:0 0 0 2px var(--oc) inset}
+.opt.ok{background:rgba(46,194,126,.18);border-color:var(--green)}
+.opt.no{opacity:.4}
+.chip{background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:7px 16px;display:inline-block;margin:4px}
+.score{background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:10px 20px;font-weight:bold;font-size:18px}
+/* leaderboard */
+.lb{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:15px 20px;margin:9px 0}
+.lb.first{border-color:var(--accent);background:linear-gradient(90deg,rgba(255,197,61,.13),var(--surface) 60%)}
+.lb.me{outline:2px solid var(--accent)}
+.lb .rk{width:36px;text-align:center;font-weight:bold;font-size:18px}
+.lb .nm{flex:1;font-weight:600;font-size:16px}
+.lb .sc{font-weight:bold;color:var(--accent);font-size:19px}
+.lb .cr{color:var(--muted);font-size:13px}
+.screen-label{position:absolute;bottom:14px;right:20px;color:#4a5378;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.confetti{position:absolute;width:10px;height:10px;border-radius:2px}
+</style></head><body>
+
+<!-- ЭКРАН 1: Регистрация / вход -->
+<div class="frame" id="s1">
+  <div class="auth-wrap"><div class="auth-card">
+    <div class="logo" style="font-size:34px">Quiz<b>Live</b></div>
+    <div class="muted" style="margin-top:4px">Онлайн-квизы в реальном времени</div>
+    <div class="tabs"><div class="tab">Вход</div><div class="tab on">Регистрация</div></div>
+    <div style="text-align:left">
+      <div class="field"><label>Имя</label><div class="input">Анна Смирнова</div></div>
+      <div class="field"><label>Почта</label><div class="input">anna@example.com</div></div>
+      <div class="field"><label>Пароль</label><div class="input muted">••••••••</div></div>
+      <div class="roles">
+        <div class="role on"><b>Участник</b>Прохожу квизы по коду комнаты</div>
+        <div class="role"><b>Организатор</b>Создаю и провожу квизы</div>
+      </div>
+      <div class="btn p" style="width:100%;text-align:center">Создать аккаунт</div>
+    </div>
+  </div></div>
+  <div class="screen-label">01 · Регистрация и вход</div>
+</div>
+
+<!-- ЭКРАН 2: Личный кабинет организатора -->
+<div class="frame" id="s2">
+  <div class="topbar"><div class="logo">Quiz<b>Live</b></div>
+    <div class="tb-user"><span class="badge">Организатор</span><b>Михаил П.</b><span class="btn g sm">Выйти</span></div></div>
+  <div class="content">
+    <div class="phead"><h1>Мои квизы</h1><span class="btn p">+ Новый квиз</span></div>
+    <div class="stats">
+      <div class="stat"><div class="v">6</div><div class="l">Квизов</div></div>
+      <div class="stat"><div class="v">14</div><div class="l">Проведено игр</div></div>
+      <div class="stat"><div class="v">128</div><div class="l">Всего участников</div></div>
+    </div>
+    <div class="qgrid">
+      <div class="qcard"><div class="qcat">Наука</div><h3>Космос и астрономия</h3><div class="m">12 вопр. · 20 с на вопрос</div>
+        <div class="row"><span class="btn p sm">▶ Запустить</span><span class="btn g sm">Редактировать</span><span class="btn d sm">Удалить</span></div></div>
+      <div class="qcard"><div class="qcat">Кино и музыка</div><h3>Кино 90-х</h3><div class="m">10 вопр. · 15 с на вопрос</div>
+        <div class="row"><span class="btn p sm">▶ Запустить</span><span class="btn g sm">Редактировать</span><span class="btn d sm">Удалить</span></div></div>
+      <div class="qcard"><div class="qcat">География</div><h3>Столицы мира</h3><div class="m">15 вопр. · 20 с на вопрос</div>
+        <div class="row"><span class="btn p sm">▶ Запустить</span><span class="btn g sm">Редактировать</span><span class="btn d sm">Удалить</span></div></div>
+    </div>
+    <h2>История проведённых игр</h2>
+    <table><tr><th>Квиз</th><th>Код</th><th>Дата</th><th>Участников</th><th>Средний балл</th><th>Лучший балл</th></tr>
+      <tr><td>Космос и астрономия</td><td class="mono">493 027</td><td>10.07.2026, 19:05</td><td>23</td><td>5 480</td><td>9 120</td></tr>
+      <tr><td>Кино 90-х</td><td class="mono">118 764</td><td>08.07.2026, 18:30</td><td>17</td><td>4 910</td><td>8 350</td></tr>
+    </table>
+  </div>
+  <div class="screen-label">02 · Личный кабинет организатора</div>
+</div>
+
+<!-- ЭКРАН 3: Редактор квиза -->
+<div class="frame" id="s3">
+  <div class="topbar"><div class="logo">Quiz<b>Live</b></div>
+    <div class="tb-user"><span class="badge">Организатор</span><b>Михаил П.</b></div></div>
+  <div class="content">
+    <div class="phead"><h1>Редактор квиза</h1><div class="row"><span class="btn g">← Назад</span><span class="btn p">Сохранить</span></div></div>
+    <div class="panel">
+      <div class="field"><label>Название</label><div class="input">Космос и астрономия</div></div>
+      <div class="row">
+        <div style="flex:1"><label>Категория</label><div class="input">Наука ▾</div></div>
+        <div style="flex:1"><label>Время на вопрос (сек)</label><div class="input">20</div></div>
+      </div>
+    </div>
+    <h2 style="margin-top:18px">Вопросы (12)</h2>
+    <div class="panel">
+      <div class="row" style="justify-content:space-between;margin-bottom:10px"><b>Вопрос 1</b>
+        <div class="row"><span class="btn g sm">↑</span><span class="btn g sm">↓</span><span class="btn d sm">Удалить</span></div></div>
+      <div class="field"><label>Текст вопроса</label><div class="input">Какая планета Солнечной системы самая большая?</div></div>
+      <div class="row" style="margin-bottom:12px">
+        <div style="flex:2"><label>Изображение (URL)</label><div class="input muted">https://…/jupiter.jpg</div></div>
+        <div style="flex:1"><label>Тип ответа</label><div class="input">Один правильный ▾</div></div>
+        <div style="flex:1"><label>Время (сек)</label><div class="input muted">пусто = общее</div></div>
+      </div>
+      <label>Отметьте правильные варианты галочкой:</label>
+      <div class="oprow"><div class="cb"></div><div class="input" style="flex:1">Сатурн</div><span class="btn g sm">✕</span></div>
+      <div class="oprow"><div class="cb on"></div><div class="input" style="flex:1">Юпитер</div><span class="btn g sm">✕</span></div>
+      <div class="oprow"><div class="cb"></div><div class="input" style="flex:1">Нептун</div><span class="btn g sm">✕</span></div>
+      <div class="row" style="margin-top:10px"><span class="btn g sm">+ Вариант</span></div>
+    </div>
+  </div>
+  <div class="screen-label">03 · Создание квиза</div>
+</div>
+
+<!-- ЭКРАН 4: Экран участника во время квиза -->
+<div class="frame" id="s4">
+  <div class="topbar"><div class="logo">Quiz<b>Live</b></div>
+    <div class="tb-user"><span class="badge">Участник</span><b>Анна С.</b></div></div>
+  <div class="content">
+    <div class="ghead"><div><div class="muted">Наука</div><h1>Космос и астрономия</h1></div><div class="score">⭐ 3 240</div></div>
+    <div class="cd"><div class="cdb" style="width:62%"></div><div class="cdn">12</div></div>
+    <div class="qmeta">Вопрос 4 из 12</div>
+    <div class="qtext">Какая планета Солнечной системы самая большая?</div>
+    <div class="qimg">Изображение к вопросу</div>
+    <div class="opts">
+      <div class="opt" style="--oc:#FF5D73"><span class="ol">A</span>Сатурн</div>
+      <div class="opt pick" style="--oc:#3E8EFF"><span class="ol">B</span>Юпитер</div>
+      <div class="opt" style="--oc:#2EC27E"><span class="ol">C</span>Нептун</div>
+      <div class="opt" style="--oc:#B36BFF"><span class="ol">D</span>Уран</div>
+    </div>
+  </div>
+  <div class="screen-label">04 · Интерфейс участника</div>
+</div>
+
+<!-- ЭКРАН 5: Итоговый лидерборд -->
+<div class="frame" id="s5">
+  <div class="confetti" style="background:#ffc53d;left:220px;top:120px;transform:rotate(20deg)"></div>
+  <div class="confetti" style="background:#3e8eff;left:1180px;top:180px;transform:rotate(-30deg)"></div>
+  <div class="confetti" style="background:#ff5d73;left:340px;top:300px;transform:rotate(45deg)"></div>
+  <div class="confetti" style="background:#2ec27e;left:1080px;top:340px;transform:rotate(10deg)"></div>
+  <div class="confetti" style="background:#b36bff;left:180px;top:480px;transform:rotate(60deg)"></div>
+  <div class="topbar"><div class="logo">Quiz<b>Live</b></div>
+    <div class="tb-user"><span class="badge">Участник</span><b>Анна С.</b></div></div>
+  <div class="content" style="width:760px">
+    <h1 style="text-align:center;margin:8px 0 4px">🏆 Итоговый лидерборд</h1>
+    <div class="muted" style="text-align:center;margin-bottom:18px">Космос и астрономия · 12 вопросов · 23 участника</div>
+    <div class="lb first"><span class="rk">🥇</span><span class="nm">Дмитрий К.</span><span class="cr">11 верно</span><span class="sc">10 480</span></div>
+    <div class="lb"><span class="rk">🥈</span><span class="nm">Ольга В.</span><span class="cr">10 верно</span><span class="sc">9 320</span></div>
+    <div class="lb me"><span class="rk">🥉</span><span class="nm">Анна С. (вы)</span><span class="cr">9 верно</span><span class="sc">8 750</span></div>
+    <div class="lb"><span class="rk">4</span><span class="nm">Игорь Т.</span><span class="cr">8 верно</span><span class="sc">7 410</span></div>
+    <div class="lb"><span class="rk">5</span><span class="nm">Мария Л.</span><span class="cr">8 верно</span><span class="sc">7 020</span></div>
+    <div style="text-align:center;margin-top:20px"><span class="btn p lg">В кабинет — результат сохранён</span></div>
+  </div>
+  <div class="screen-label">05 · Лидерборд</div>
+</div>
+
+</body></html>
